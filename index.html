@@ -4,213 +4,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=yes">
-    <title>企业联系方式</title>
+    <title>创新科技 - 响应式企业网站</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .phone-btn {
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .carousel-slide {
+            transition: opacity 0.8s ease-in-out;
         }
-        .phone-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        .carousel-slide.active {
+            opacity: 1;
         }
-        .contact-card {
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        .carousel-slide:not(.active) {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         .fade-in {
             animation: fadeIn 0.8s ease-in-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .pulse {
-            animation: pulse 2s infinite;
+        .hover-lift {
+            transition: all 0.3s ease;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-purple-100 min-h-screen">
+<body class="bg-gray-50">
     <!-- 导航栏 -->
-    <nav class="bg-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
                 <div class="flex items-center">
-                    <i class="fas fa-phone-alt text-purple-600 text-2xl mr-3"></i>
-                    <h1 class="text-2xl font-bold text-gray-800">企业联系中心</h1>
+                    <i class="fas fa-rocket text-blue-600 text-2xl mr-3"></i>
+                    <span class="text-xl font-bold text-gray-800">创新科技</span>
                 </div>
+
+                <!-- 桌面端菜单 -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#contact" class="text-gray-600 hover:text-purple-600 transition-colors">联系方式</a>
-                    <a href="#about" class="text-gray-600 hover:text-purple-600 transition-colors">关于我们</a>
-                    <a href="#services" class="text-gray-600 hover:text-purple-600 transition-colors">服务项目</a>
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">首页</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">关于我们</a>
+                    <a href="#services" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">服务项目</a>
+                    <a href="#products" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">产品展示</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">联系我们</a>
                 </div>
-                <button class="md:hidden text-gray-600">
+
+                <!-- 移动端菜单按钮 -->
+                <button class="md:hidden text-gray-600" id="mobileMenuButton">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
+            </div>
+
+            <!-- 移动端菜单 -->
+            <div class="md:hidden hidden bg-white py-4" id="mobileMenu">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">首页</a>
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">关于我们</a>
+                    <a href="#services" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">服务项目</a>
+                    <a href="#products" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">产品展示</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-600 transition-colors font-medium">联系我们</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- 主内容区域 -->
-    <main class="max-w-7xl mx-auto px-4 py-12">
-        <!-- 英雄区域 -->
-        <section class="text-center mb-16 fade-in">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">随时为您服务</h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-                我们提供7×24小时客户服务，专业团队随时准备为您解答疑问
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-6 mb-12">
-                <div class="bg-white rounded-2xl p-6 shadow-xl contact-card">
-                    <i class="fas fa-headset text-4xl text-purple-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-2">客服热线</h3>
-                    <p class="text-gray-600 mb-4">专业解答，快速响应</p>
-                    <a href="tel:400-123-4567" class="phone-btn inline-block text-white px-8 py-3 rounded-full font-semibold pulse">
-                        <i class="fas fa-phone mr-2"></i>400-123-4567
-                    </a>
-                </div>
-                <div class="bg-white rounded-2xl p-6 shadow-xl contact-card">
-                    <i class="fas fa-briefcase text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-2">商务合作</h3>
-                    <p class="text-gray-600 mb-4">合作洽谈，共赢发展</p>
-                    <a href="tel:010-88889999" class="phone-btn inline-block text-white px-8 py-3 rounded-full font-semibold">
-                        <i class="fas fa-phone mr-2"></i>010-88889999
-                    </a>
-                </div>
-                <div class="bg-white rounded-2xl p-6 shadow-xl contact-card">
-                    <i class="fas fa-tools text-4xl text-green-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-2">技术支持</h3>
-                    <p class="text-gray-600 mb-4">技术问题，专业解决</p>
-                    <a href="tel:400-987-6543" class="phone-btn inline-block text-white px-8 py-3 rounded-full font-semibold">
-                        <i class="fas fa-phone mr-2"></i>400-987-6543
-                    </a>
+    <!-- 轮播图区域 -->
+    <section class="relative overflow-hidden bg-gray-900" id="home">
+        <div class="relative h-96 md:h-[500px]">
+            <!-- 轮播图1 -->
+            <div class="carousel-slide active w-full h-full">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/70 to-purple-900/70"></div>
+                <img src="https://picsum.photos/1920/1080?random=1" alt="企业创新技术展示" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl fade-in">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-4">引领科技创新</h2>
+                        <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">我们致力于为客户提供最前沿的技术解决方案，推动行业数字化转型</p>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                            了解更多
+                        </button>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- 联系信息区域 -->
-        <section id="contact" class="mb-16 fade-in">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">多种联系方式</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-mobile-alt text-3xl text-purple-500 mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">手机联系</h3>
-                    <a href="tel:13800138000" class="text-blue-600 hover:text-blue-800 transition-colors">138-0013-8000</a>
-                </div>
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-envelope text-3xl text-red-500 mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">电子邮件</h3>
-                    <a href="mailto:contact@company.com" class="text-blue-600 hover:text-blue-800 transition-colors">contact@company.com</a>
-                </div>
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-map-marker-alt text-3xl text-green-500 mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">公司地址</h3>
-                    <p class="text-gray-600">北京市朝阳区商务中心</p>
-                </div>
-                <div class="bg-white rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-clock text-3xl text-orange-500 mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">服务时间</h3>
-                    <p class="text-gray-600">周一至周日 9:00-18:00</p>
+            <!-- 轮播图2 -->
+            <div class="carousel-slide w-full h-full">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-900/70 to-blue-900/70"></div>
+                <img src="https://picsum.photos/1920/1080?random=2" alt="团队协作与创新" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-4">专业团队协作</h2>
+                        <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">汇聚行业精英，打造高效协作团队，为客户创造更大价值</p>
+                        <button class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                            加入我们
+                        </button>
+                    </div>
                 </div>
             </div>
-        </section>
 
-        <!-- 快速拨号面板 -->
-        <section class="bg-white rounded-2xl shadow-xl p-8 mb-16 fade-in">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">快速拨号</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button onclick="quickCall('400-123-4567')" class="bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl p-4 text-left transition-colors group">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h4 class="font-semibold text-gray-800">客户服务</h4>
-                        <p class="text-blue-600">400-123-4567</p>
+            <!-- 轮播图3 -->
+            <div class="carousel-slide w-full h-full">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-900/70 to-pink-900/70"></div>
+                <img src="https://picsum.photos/1920/1080?random=3" alt="数字化解决方案" class="w-full h-full object-cover">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="text-center text-white px-4 max-w-4xl">
+                        <h2 class="text-3xl md:text-5xl font-bold mb-4">数字化解决方案</h2>
+                        <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">为企业提供全方位的数字化转型服务，助力业务增长</p>
+                        <button class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                            查看方案
+                        </button>
                     </div>
-                    <i class="fas fa-phone text-blue-500 group-hover:scale-110 transition-transform"></i>
                 </div>
-                </button>
-                <button onclick="quickCall('400-987-6543')" class="bg-green-50 hover:bg-green-100 border border-green-200 rounded-xl p-4 text-left transition-colors group">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h4 class="font-semibold text-gray-800">技术支持</h4>
-                        <p class="text-green-600">400-987-6543</p>
-                    </div>
-                    <i class="fas fa-phone text-green-500 group-hover:scale-110 transition-transform"></i>
-                </div>
-                </button>
-                <button onclick="quickCall('010-88889999')" class="bg-purple-50 hover:bg-purple-100 border border-purple-200 rounded-xl p-4 text-left transition-colors group">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h4 class="font-semibold text-gray-800">商务合作</h4>
-                        <p class="text-purple-600">010-88889999</p>
-                    </div>
-                    <i class="fas fa-phone text-purple-500 group-hover:scale-110 transition-transform"></i>
-                </div>
-                </button>
             </div>
-        </section>
 
-        <!-- 使用说明 -->
-        <section class="bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl text-white p-8 fade-in">
-            <h2 class="text-2xl font-bold mb-6 text-center">使用说明</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <div class="bg-white bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-mouse-pointer text-2xl"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2">点击号码</h3>
-                    <p class="text-purple-100">直接点击页面上的电话号码</p>
+            <!-- 轮播图控制按钮 -->
+            <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-colors" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <!-- 轮播图指示器 -->
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white active" data-index="0"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50" data-index="1"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50" data-index="2"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们区域 -->
+    <section class="py-16 bg-white" id="about">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">关于创新科技</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">我们是一家专注于科技创新和数字化转型的高新技术企业</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <img src="https://picsum.photos/600/400?random=4" alt="公司办公环境" class="rounded-2xl shadow-xl w-full hover-lift">
                 </div>
-                <div class="text-center">
-                    <div class="bg-white bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-mobile-alt text-2xl"></i>
-                    </div>
-                    <h3 class="font-semibold mb-2">自动拨号</h3>
-                    <p class="text-purple-100">系统会自动调用手机拨号功能</p>
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">我们的使命与愿景</h3>
+                    <p class="text-gray-600 mb-6">自2010年成立以来，我们始终坚持以技术创新为核心，为客户提供优质的产品和服务。我们的团队由行业资深专家和技术精英组成，拥有丰富的项目经验和专业知识。</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-blue-50 rounded-lg p-4 text-center">
+                            <i class="fas fa-users text-blue-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">200+</p>
+                    <p class="text-sm text-gray-600">专业团队成员</p>
                 </div>
-                <div class="text-center">
-                    <div class="bg-white bg-opacity-20 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-phone-volume text-2xl"></i>
+                        <div class="bg-green-50 rounded-lg p-4 text-center">
+                            <i class="fas fa-project-diagram text-green-600 text-2xl mb-2"></i>
+                            <p class="font-semibold text-gray-800">500+</p>
+                    <p class="text-sm text-gray-600">成功交付项目</p>
+                </div>
                     </div>
-                    <h3 class="font-semibold mb-2">开始通话</h3>
-                    <p class="text-purple-100">确认号码后即可开始通话</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- 服务项目区域 -->
+    <section class="py-16 bg-gray-100" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">我们的服务</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">为客户提供全方位的技术服务和解决方案</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift fade-in">
+                    <i class="fas fa-laptop-code text-blue-600 text-4xl mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">软件开发</h3>
+                    <p class="text-gray-600">提供定制化的软件开发服务，包括Web应用、移动应用和企业级系统开发。</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift fade-in">
+                    <i class="fas fa-cloud text-green-600 text-4xl mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">云计算服务</h3>
+                    <p class="text-gray-600">基于云原生架构，为企业提供稳定可靠的云计算解决方案和运维支持。</p>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift fade-in">
+                    <i class="fas fa-brain text-purple-600 text-4xl mb-6"></i>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">人工智能</h3>
+                    <p class="text-gray-600">运用机器学习、深度学习等技术，开发智能化的业务解决方案。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示区域 -->
+    <section class="py-16 bg-white" id="products">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">产品展示</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">探索我们创新的产品系列</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover-lift fade-in">
+                    <img src="https://picsum.photos/400/300?random=5" alt="智能数据分析平台" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">智能数据分析平台</h3>
+                        <p class="text-gray-600 text-sm">基于大数据技术的智能分析工具，帮助企业挖掘数据价值。</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover-lift fade-in">
+                    <img src="https://picsum.photos/400/300?random=6" alt="企业管理系统" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">企业管理系统</h3>
+                        <p class="text-gray-600 text-sm">集成化的企业管理解决方案，提升运营效率和管理水平。</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover-lift fade-in">
+                        <img src="https://picsum.photos/400/300?random=7" alt="移动应用开发" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">移动应用开发</h3>
+                        <p class="text-gray-600 text-sm">跨平台的移动应用开发服务，满足不同业务场景需求。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们区域 -->
+    <section class="py-16 bg-gradient-to-br from-blue-600 to-purple-700 text-white" id="contact">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-4xl font-bold mb-4">联系我们</h2>
+                <p class="text-xl opacity-90 max-w-3xl mx-auto">我们期待与您合作，共同创造更大的价值</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6">获取专业咨询</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-xl mr-4"></i>
+                            <p>北京市朝阳区科技园区创新大厦</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-xl mr-4"></i>
+                            <a href="tel:400-123-4567" class="hover:underline">400-123-4567</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-xl mr-4"></i>
+                            <a href="mailto:contact@innotech.com" class="hover:underline">contact@innotech.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <form class="space-y-4">
+                        <input type="text" placeholder="您的姓名" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        <input type="email" placeholder="电子邮箱" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                        <textarea placeholder="留言内容" rows="4" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50"></textarea>
+                        <button type="submit" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            发送消息
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 页脚 -->
     <footer class="bg-gray-800 text-white py-12">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">企业联系中心</h3>
-                    <p class="text-gray-400">专业服务，值得信赖</p>
+                    <h3 class="text-xl font-bold mb-4">创新科技</h3>
+                    <p class="text-gray-400">致力于科技创新，推动行业发展</p>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">快速链接</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition-colors">首页</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">服务项目</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="#home" class="hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">服务项目</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">联系我们</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="tel:400-123-4567" class="hover:text-white transition-colors">客服热线</a></li>
-                        <li><a href="tel:400-987-6543" class="hover:text-white transition-colors">技术支持</a></li>
+                        <li><a href="mailto:contact@innotech.com" class="hover:text-white transition-colors">电子邮箱</a></li>
                     </ul>
                 </div>
                 <div>
@@ -226,21 +310,107 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 企业联系中心 版权所有</p>
+                <p>&copy; 2025 创新科技 版权所有</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // 快速拨号功能
-        function quickCall(phoneNumber) {
-            if(confirm('是否拨打 ' + phoneNumber + '?')) {
-                window.location.href = 'tel:' + phoneNumber;
+        // 轮播图功能
+        class Carousel {
+            constructor() {
+                this.slides = document.querySelectorAll('.carousel-slide');
+                this.indicators = document.querySelectorAll('.carousel-indicator');
+                this.currentIndex = 0;
+                this.interval = null;
+                this.init();
+            }
+
+            init() {
+                // 绑定事件
+                document.getElementById('prevBtn').addEventListener('click', () => this.prev());
+                document.getElementById('nextBtn').addEventListener('click', () => this.next());
+                
+                // 绑定指示器点击事件
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+
+                // 自动轮播
+                this.startAutoPlay();
+                
+                // 鼠标悬停暂停
+                const carousel = document.querySelector('.relative.h-96');
+                carousel.addEventListener('mouseenter', () => this.stopAutoPlay());
+                carousel.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+
+            showSlide(index) {
+                // 隐藏所有幻灯片
+                this.slides.forEach(slide => slide.classList.remove('active'));
+                this.indicators.forEach(indicator => {
+                    indicator.classList.remove('active');
+                    indicator.classList.add('bg-white/50');
+                });
+
+                // 显示当前幻灯片
+                this.slides[index].classList.add('active');
+                this.indicators[index].classList.add('active');
+                this.indicators[index].classList.remove('bg-white/50');
+
+                this.currentIndex = index;
+            }
+
+            next() {
+                let nextIndex = (this.currentIndex + 1) % this.slides.length;
+                this.showSlide(nextIndex);
+            }
+
+            prev() {
+                let prevIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+                this.showSlide(prevIndex);
+            }
+
+            goToSlide(index) {
+                this.showSlide(index);
+            }
+
+            startAutoPlay() {
+                this.interval = setInterval(() => this.next(), 5000);
+            }
+
+            stopAutoPlay() {
+                if (this.interval) {
+                    clearInterval(this.interval);
+                    this.interval = null;
+                }
             }
         }
 
-        // 添加动画效果
+        // 移动端菜单功能
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 页面加载完成后初始化轮播图
         document.addEventListener('DOMContentLoaded', function() {
+            new Carousel();
+            
+            // 添加滚动动画
             const observerOptions = {
                 threshold: 0.1,
                 rootMargin: '0px 0px -50px 0px'
@@ -249,22 +419,16 @@
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.classList.add('fade-in');
                     }
                 });
             }, observerOptions);
 
             // 观察所有需要动画的元素
-            document.querySelectorAll('.fade-in').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            document.querySelectorAll('section > div').forEach(el => {
                 observer.observe(el);
             });
         });
     </script>
 </body>
 </html>
-<code_end>
-此HTML页面实现了一个功能完整、视觉精美的电话联系中心页面，主要特点包括：1. 响应式设计适配各种设备屏幕；2. 多种拨打电话方式，包括直接链接和JavaScript调用；3. 现代化UI设计，采用渐变背景、阴影和动画效果；4. 包含客服热线、商务合作、技术支持等多个联系渠道；5. 交互式快速拨号面板和悬浮动画效果；6. 完整的页面结构，包含导航、主内容区域和页脚信息
